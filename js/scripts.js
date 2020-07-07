@@ -15,6 +15,14 @@ const exchangeRate = {
     VND: 1
 }
 
+function formatCurrency(type, value) {
+    const formatter = new Intl.NumberFormat(type, {
+        currency: type,
+        style: "currency"
+    });
+    return formatter.format(value);
+}
+
 function exchange() {
     let amount = amountInput.value;
     let fcurrency = fromCurrency.value;
@@ -23,6 +31,7 @@ function exchange() {
     amountVnd = amount * exchangeRate[fcurrency];
     //out not vnd
     let convertedAmount = Math.round(((amountVnd / exchangeRate[tcurrency]) + Number.EPSILON) * 100) / 100;
-    document.getElementById("result").innerHTML = `your money in USD is ${convertedAmount}`;
+    let formatAmount = formatCurrency(tcurrency, convertedAmount)
+    document.getElementById("result").innerHTML = `your money in USD is ${formatAmount}`;
 }
 convertButton.addEventListener("click", exchange)
