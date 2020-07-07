@@ -10,9 +10,20 @@ async function callApi() {
     const response = await fetch(url);
     let result = await fetch(url);
     let data = await result.json();
-    currencyList = data.rates
+    if (isNaN(data) === false) {
+        currencyList = data.rates
+    } else {
+        currencyList = {
+            EUR: 1,
+            VND: 26162,
+            USD: 1.13,
+            JPY: 121.43,
+        }
+    }
 }
 callApi();
+
+
 
 function formatCurrency(type, value) {
     const formatter = new Intl.NumberFormat(type, {
