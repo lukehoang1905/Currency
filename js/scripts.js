@@ -29,8 +29,8 @@ function exchange() {
     let fcurrency = fromCurrency.value;
     let tcurrency = toCurrency.value;
 
-    let amountEur = Math.round(((amount / currencyList[fcurrency]) + Number.EPSILON) * 100) / 100;
-    let convertedAmount = amountEur * currencyList[tcurrency];
+    let amountEur = amount / currencyList[fcurrency];
+    let convertedAmount = Math.round(((amountEur * currencyList[tcurrency]) + Number.EPSILON) * 100) / 100;
 
     let formatAmount = formatCurrency(tcurrency, convertedAmount)
     document.getElementById("result").innerHTML = `your money is ${formatAmount}`;
