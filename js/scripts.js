@@ -16,7 +16,7 @@ function dothis() {
 
 
 async function callApi() {
-    let url = "https://data.fixer.io/api/latest?access_key=0f2611ea1f1ff407b0040f536eebae82"
+    let url = "http://data.fixer.io/api/latest?access_key=0f2611ea1f1ff407b0040f536eebae82"
     let response = await fetch(url);
     let data = await response.json();
     document.getElementById("notification").innerHTML = `API is working , using latest exchange`;
