@@ -6,27 +6,24 @@ let currencyList = {};
 
 
 async function callApi() {
-    let url = "http://data.fixer.io/api/latest?access_key=0f2611ea1f1ff407b0040f536eebae82"
-    const response = await fetch(url);
-    let result = await fetch(url);
-    let data = await result.json();
-    console.log(data)
-    if (data.success) {
-        document.getElementById("notification").innerHTML = `API is working , using latest exchange`;
-        currencyList = data.rates
-    } else {
-        document.getElementById("notification").innerHTML = `API sever is down, using 7 / 7 / 2020 exchange rate`;
-        currencyList = {
-            EUR: 1,
-            VND: 26162,
-            USD: 1.13,
-            JPY: 121.43,
-        }
-    }
+    let url = "http://data.fixr.io/api/latest?access_key=0f2611ea1f1ff407b0040f536eebae82"
+    let response = await fetch(url);
+    let data = await response.json();
+    document.getElementById("notification").innerHTML = `API is working , using latest exchange`;
+    currencyList = data.rates
 }
-callApi();
-
-
+try {
+    callApi();
+} catch (e) {
+    functionToHandleError(e);
+}
+document.getElementById("notification").innerHTML = `API sever is down, using 7 / 7 / 2020 exchange rate`;
+currencyList = {
+    EUR: 1,
+    VND: 26162,
+    USD: 1.13,
+    JPY: 121.43,
+}
 
 function formatCurrency(type, value) {
     const formatter = new Intl.NumberFormat(type, {
