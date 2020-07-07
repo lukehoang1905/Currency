@@ -32,6 +32,6 @@ function exchange() {
     //out not vnd
     let convertedAmount = Math.round(((amountVnd / exchangeRate[tcurrency]) + Number.EPSILON) * 100) / 100;
     let formatAmount = formatCurrency(tcurrency, convertedAmount)
-    document.getElementById("result").innerHTML = `your money in USD is ${formatAmount}`;
+    document.getElementById("result").innerHTML = `your money is ${formatAmount}`;
 }
 convertButton.addEventListener("click", exchange)
