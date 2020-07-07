@@ -10,9 +10,12 @@ async function callApi() {
     const response = await fetch(url);
     let result = await fetch(url);
     let data = await result.json();
-    if (isNaN(data) === false) {
+    console.log(data)
+    if (data.success) {
+        document.getElementById("notification").innerHTML = `API is working , using latest exchange`;
         currencyList = data.rates
     } else {
+        document.getElementById("notification").innerHTML = `API sever is down, using 7 / 7 / 2020 exchange rate`;
         currencyList = {
             EUR: 1,
             VND: 26162,
