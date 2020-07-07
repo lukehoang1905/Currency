@@ -26,14 +26,17 @@ function exchange() {
     console.log(currencyList["VND"])
 
     let amount = amountInput.value;
-    let fcurrency = fromCurrency.value;
-    let tcurrency = toCurrency.value;
+    if (amount > 0) {
+        let fcurrency = fromCurrency.value;
+        let tcurrency = toCurrency.value;
 
-    let amountEur = amount / currencyList[fcurrency];
-    let convertedAmount = Math.round(((amountEur * currencyList[tcurrency]) + Number.EPSILON) * 100) / 100;
+        let amountEur = amount / currencyList[fcurrency];
+        let convertedAmount = Math.round(((amountEur * currencyList[tcurrency]) + Number.EPSILON) * 100) / 100;
 
-    let formatAmount = formatCurrency(tcurrency, convertedAmount)
-    document.getElementById("result").innerHTML = `your money is ${formatAmount}`;
-
+        let formatAmount = formatCurrency(tcurrency, convertedAmount)
+        document.getElementById("result").innerHTML = `your money is ${formatAmount}`;
+    } else {
+        alert("Invalid Input")
+    }
 }
 convertButton.addEventListener("click", exchange)
